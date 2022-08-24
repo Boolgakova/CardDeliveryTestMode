@@ -18,7 +18,6 @@ class AuthTest {
 
     @BeforeEach
     void setup() {
-        Configuration.headless = true;
         open("http://localhost:9999");
     }
 
@@ -30,10 +29,6 @@ class AuthTest {
         $("[data-test-id=password] input").setValue(registeredUser.getPassword());
         $("[data-test-id=action-login]").click();
         $("h2").shouldHave(Condition.text("Личный кабинет")).shouldBe(Condition.visible);
-
-        // TODO: добавить логику теста, в рамках которого будет выполнена попытка входа в личный кабинет с учётными
-        //  данными зарегистрированного активного пользователя, для заполнения полей формы используйте
-        //  пользователя registeredUser
     }
 
     @Test
@@ -46,9 +41,6 @@ class AuthTest {
         $("[data-test-id=error-notification]")
                 .shouldHave(Condition.text("Неверно указан логин или пароль"))
                 .shouldBe(Condition.visible);
-
-        // TODO: добавить логику теста в рамках которого будет выполнена попытка входа в личный кабинет
-        //  незарегистрированного пользователя, для заполнения полей формы используйте пользователя notRegisteredUser
     }
 
     @Test
@@ -61,9 +53,6 @@ class AuthTest {
         $("[data-test-id=error-notification]")
                 .shouldHave(Condition.text("Пользователь заблокирован"))
                 .shouldBe(Condition.visible);
-
-        // TODO: добавить логику теста в рамках которого будет выполнена попытка входа в личный кабинет,
-        //  заблокированного пользователя, для заполнения полей формы используйте пользователя blockedUser
     }
 
     @Test
@@ -77,10 +66,6 @@ class AuthTest {
         $("[data-test-id=error-notification]")
                 .shouldHave(Condition.text("Неверно указан логин или пароль"))
                 .shouldBe(Condition.visible);
-
-        // TODO: добавить логику теста в рамках которого будет выполнена попытка входа в личный кабинет с неверным
-        //  логином, для заполнения поля формы "Логин" используйте переменную wrongLogin,
-        //  "Пароль" - пользователя registeredUser
     }
 
     @Test
@@ -94,9 +79,5 @@ class AuthTest {
         $("[data-test-id=error-notification]")
                 .shouldHave(Condition.text("Неверно указан логин или пароль"))
                 .shouldBe(Condition.visible);
-
-        // TODO: добавить логику теста в рамках которого будет выполнена попытка входа в личный кабинет с неверным
-        //  паролем, для заполнения поля формы "Логин" используйте пользователя registeredUser,
-        //  "Пароль" - переменную wrongPassword
     }
 }
